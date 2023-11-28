@@ -25,9 +25,9 @@ public class TestaDeCrypt {
 		Paciente p = new Paciente();
 		p.setId(1);
 		
-//		Teste insercao
-//		TriglicerideoDto triglicerideoDto = new TriglicerideoDto("mg/dL", "100");
-//		exameDao.insereTriglicerídeo(triglicerideoDto, p);
+
+		TriglicerideoDto triglicerideoDto = new TriglicerideoDto("mg/dL", "100");
+		exameDao.insereTriglicerídeo(triglicerideoDto, p);
 		
 		int exameId = 1;
 		TriglicerideoDto triglicerideoDto = exameDao.recuperaExame(exameId);
