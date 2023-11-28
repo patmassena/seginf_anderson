@@ -1,0 +1,69 @@
+CREATE DATABASE lab;
+
+use lab;
+
+CREATE TABLE paciente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cpf CHAR(11) NOT NULL
+);
+
+CREATE TABLE medico (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cpf CHAR(11) NOT NULL,
+    especialidade VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE triglicerideos (
+    id INT auto_increment PRIMARY KEY,
+    tipo_metrica BIT(64) NOT NULL,
+    resultado BIT(64) NOT NULL,
+    paciente_id INT NOT NULL,
+    FOREIGN KEY (paciente_id) REFERENCES paciente(id)
+);
+
+CREATE TABLE valorespadroes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    valor_normal DECIMAL(10,2) NOT NULL,
+    valor_limite_inferior DECIMAL(10,2) NOT NULL,
+    valor_limite_superior DECIMAL(10,2) NOT NULL,
+    unidade VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE senha (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    chave_secreta VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    login_hash CHAR(64) NOT NULL,
+    senha_hash CHAR(64) NOT NULL,
+    senha_id INT NOT NULL,
+    FOREIGN KEY (senha_id) REFERENCES senha(id)
+    );
+    
+    use lab;
+    insert into paciente (nome,cpf)
+    values ("patricia","12345678910");
+    
+	insert into paciente (nome,cpf)
+    values ("creusa","12345678911");
+    
+    insert into medico (nome, cpf, especialidade)
+    values ("ronaldo", "11223344556", "endocrinologista");
+       
+
+    insert into valorespadroes (valor_normal, valor_limite_inferior,
+    valor_limite_superior, unidade)
+    values (100, 1, 500, "mg/dL");
+    
+    insert into senha (chave_secreta)
+    values ("tireiO");
+
+    insert into usuario (login_hash, senha_hash, senha_id)
+    values ("f5d48ed871ab7bcd7aebf588ea7e51534688f8e5283d9c50bb191ea42ad4d972",
+    "34ae0e7bedd5aeddcb1102e746ea33bbc6f33b71237b0a346b55e43d4c9a7160", 1);
